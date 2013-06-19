@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>BANDASAUR <%== "- #{title}" if title %></title>
+		<link href="/css/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+		<link href="/css/screen.css" media="screen" rel="stylesheet" type="text/css" />
+		
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+    <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+		<script type="text/javascript" src="/js/libs/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" src="/js/libs/jquery.tinyscrollbar.min.js"></script>
+
+		<%== require_javascript %>
+
+		<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">	
+    <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="/css/scrollbar.css" type="text/css" media="screen"/>
+	</head>
+	<body>
+	  
+	  <div class="container">
+	    <%== yield %>
+	  <!--
+	    <div class="span-24 last">
+  	    <% if current_user %>
+    	    <a href="/users/<%= current_user.id %>-<%= current_user.name.url_friendly %>"><%= current_user.name %></a> - <a href="/sessions/logout">Logout</a>
+    	  <% else %>
+    	    <a href="/sessions/new">Login</a> - <a href="/users/new">Sign Up</a>
+    	  <% end %>
+      </div>
+    -->
+    </div>
+	</body>
+</html>

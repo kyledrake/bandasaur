@@ -1,0 +1,109 @@
+<script>
+  $(document).ready(function(){
+    queue = new Queue('jquery_jplayer_1', 'player_start', 'player', 'recently_played', 'currently_playing', 'search_info');
+
+    <% if search_params %>
+      queue.setLastSearchCriteria('<%= search_params.to_query_string %>');
+    <% end %>
+
+    searchForm = new SearchForm('search');
+
+    SearchForm.prototype = {  
+      genres: <%== Genre.to_hash.to_json %>,
+      countries: <%== Country.to_hash.to_json %>
+    }
+    
+  });
+</script>
+
+<div class="span-24 last">
+	<h1>BANDASAUR</h1>
+</div>
+
+<div class="span-12">
+
+  <form id="search" onsubmit="queue.searchWithForm($(this)); return false">
+    <h2>Genres</h2>
+  	<script type="text/javascript">
+  		$(document).ready(function(){
+  			$('#genres').tinyscrollbar();
+  		});
+  		$(document).ready(function(){
+  			$('#where').tinyscrollbar();
+  		});
+  	</script>
+
+	  <div id="genres">
+  		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+  		<div class="viewport">
+  		  <div class="overview">
+          <% @genres.each do |genre| %>
+            <input name="search[genre_ids][]" type="checkbox" value="<%= genre.id %>" <% if search_params %><%= checked_if_exists search_params.genre_ids, genre.id %><% end %> /> <%= genre.name %> <span style="float:right"><%= genre.tracks_count_cache %></span>
+            <br/>
+          <% end %>
+  			</div>
+  		</div>
+    </div>
+
+    <h2>Location</h2>
+    <div id="where">
+  		<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+  		<div class="viewport">
+        <div class="overview">
+          Country:<br/>
+          <% @countries.each do |country| %>
+          <input name="search[country_ids][]" value="<%= country.id %>" type="checkbox" <% if search_params %><%= checked_if_exists search_params.country_ids, country.id %><% end %> /> <%= country.name %> <span style="float:right"><%= country.tracks_count_cache %></span>
+            <br/>
+          <% end %>
+  			</div>
+  		</div>
+  	</div>
+    <br/>
+
+    <div id="search_button" style="display:none">
+      <h1><a href="#" onclick="queue.searchWithForm(searchForm.form()); return false">SEARCH</a></h1>
+      <h2><a href="#" onclick="searchForm.clearFields(); return false">RESET</a></h2>
+    </div>
+  </form>
+
+</div>
+
+<div class="span-12 last">
+  <div id="player_start"><h1><a href="#" onclick="$('#search_button').css('display', 'block'); $('#player_start').css('display', 'none'); queue.searchWithForm(searchForm.form()); return false">START</a></h1></div>
+  <div id="player" style="display:none">
+    <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+    <div class="jp-audio">
+    	<div class="jp-type-single">
+    		<div id="jp_interface_1" class="jp-interface">
+    			<ul class="jp-controls">
+    			  <li><a href="#" class="jp-big-previous" tabindex="1" onclick="queue.previous(); return false">previous</a></li>
+    				<li><a href="#" class="jp-play" tabindex="1">play</a></li>
+    				<li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+    				<li><a href="#" class="jp-stop" tabindex="1">stop</a></li>
+    				<li><a href="#" class="jp-mute" tabindex="1">mute</a></li>
+    				<li><a href="#" class="jp-unmute" tabindex="1">unmute</a></li>
+    				<li><a href="#" class="jp-big-next" tabindex="1" onclick="queue.next(); return false">next</a></li>
+    			</ul>
+    			<div class="jp-progress">
+    				<div class="jp-seek-bar"><div class="jp-play-bar"></div></div>
+    			</div>
+    			<div class="jp-volume-bar"><div class="jp-volume-bar-value"></div></div>
+    			<div class="jp-current-time"></div>
+    			<div class="jp-duration"></div>
+    		</div>
+    		<div id="jp_playlist_1" class="jp-playlist">
+    		</div>
+    	</div>
+    </div>
+  </div>
+
+  <div id="currently_playing">
+  </div>
+
+  <ul id="recently_played">
+  </ul>
+  
+  <div id="search_info">
+  </div>
+
+</div>

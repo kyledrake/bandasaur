@@ -1,0 +1,72 @@
+<div id="chooser">
+  <h1>YOU ARE A:</h1>
+  <h2>
+    <a href="#" onclick="chooseListener(); return false">LISTENER</a>
+    <a href="#" onclick="chooseMusician(); return false">MUSICIAN</a>
+  </h2>
+</div>
+
+<div id="user_errors"></div>
+
+<div id="user_form_container" style="display:none">
+  <form action="/users" method="POST">
+	<input name="user[source_id]" type="hidden" value="<%= Source.bandasaur.id %>"/>
+    <input name="user[is_band]" id="user_is_band" type="hidden" value="0"/>
+    
+    Name: <input name="user[name]" type="text"/>
+    <br/>
+    Email: <input name="user[email]" type="text"/>
+    <br/>
+    Password: <input name="user[password][one]" type="password"/>
+    <br/>
+    Re-Type Password: <input name="user[password][two]" type="password"/>
+    <br/>
+    City: <input name="user[city_name]" type="text"/>
+    <br/>
+    State: <input name="user[state_name]" type="text"/>
+    <br/>
+    Country: <input name="user[country_name]" type="text"/>
+    <br/>
+    <br/>
+    <div id="band_entry" style="display: none">
+      Select genres (up to three):
+      <br/>
+      <% @genres.each do |genre| %>
+        <input name="user[genre_ids][]" type="checkbox" value="<%= genre.id %>"/> <%= genre.name %>
+        <br/>
+      <% end %>
+    </div>
+    <br/>
+  
+    <%== recaptcha_tag :ajax %>
+    <br/>
+    <input type="submit" value="Create Account" onclick="validateForm(this, 'user', 'user_errors'); return false;"/>
+    <br/><br/>
+  </form>
+</div>
+
+<script>
+
+  function chooseListener() {
+    $('#chooser').css('display', 'none');
+    $('#user_form_container').css('display', 'block');
+  }
+  
+  function chooseMusician() {
+    $('#chooser').css('display', 'none');
+    $('#user_form_container').css('display', 'block');
+    $('#band_entry').css('display', 'block');
+    $('#user_is_band').val('1');
+  }
+
+  function validateForm(submit_obj, model_name, errors_container) {
+    var form = submit_obj.parentNode;
+    $.post('/validate/'+model_name, $(form).serialize(), function(response) {
+      if(response.length == 0) {
+        $(form).submit();
+      } else {
+        $('#'+errors_container).html(response);
+      }
+    });
+  }
+</script>

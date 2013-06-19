@@ -1,0 +1,9 @@
+development:
+  cookie_secret: AbCd3Fg
+  database_configuration:
+    adapter: mysql
+    host: localhost
+    username: root
+    password:
+    database: bandasaur
+    pool: 10

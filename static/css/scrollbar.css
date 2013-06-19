@@ -1,0 +1,24 @@
+/* Tiny Scrollbar */
+#genres { width: 220px; clear: both; margin: 20px 0 10px; }
+#genres .viewport { width: 200px; height: 170px; overflow: hidden; position: relative; }
+#genres .overview { list-style: none; position: absolute; left: 0; top: 0; }
+#genres .scrollbar,
+#genres .thumb .end,
+#genres .thumb { background: transparent url(/img/bg-scrollbar.png) no-repeat; }
+#genres .scrollbar { position: relative; background-position: 0 0; float: right; width: 15px; }
+#genres .track	{ background: transparent url(/img/bg-scrollbar-end.png) no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#genres .thumb { background-position: 100% 100%; height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+#genres .thumb .end { background-position: 100% 0; height: 5px; width: 13px; }
+#genres .disable { display: none; }
+
+#where { width: 220px; clear: both; margin: 20px 0 10px; }
+#where .viewport { width: 200px; height: 170px; overflow: hidden; position: relative; }
+#where .overview { list-style: none; position: absolute; left: 0; top: 0; }
+#where .scrollbar,
+#where .thumb .end,
+#where .thumb { background: transparent url(/img/bg-scrollbar.png) no-repeat; }
+#where .scrollbar { position: relative; background-position: 0 0; float: right; width: 15px; }
+#where .track	{ background: transparent url(/img/bg-scrollbar-end.png) no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px; }
+#where .thumb { background-position: 100% 100%; height: 20px; width: 13px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+#where .thumb .end { background-position: 100% 0; height: 5px; width: 13px; }
+#where .disable { display: none; }

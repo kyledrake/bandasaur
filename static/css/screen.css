@@ -1,0 +1,41 @@
+.where {
+  width: 300px;
+  height: 230px;
+  overflow: auto;
+}
+
+a.jp-big-next, a.jp-big-previous {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+div.jp-audio div.jp-type-single a.jp-big-next {
+  top: 20px;
+  left: 365px;
+}
+
+div.jp-audio div.jp-type-single a.jp-big-previous {
+  top: 20px;
+  left: 0px;
+}
+
+a.jp-big-next {
+	background: url("/img/jplayer.blue.monday.jpg") -82px 0 no-repeat;
+}
+
+a.jp-big-next:hover {
+	background: url("/img/jplayer.blue.monday.jpg") -123px 0 no-repeat;
+}
+
+a.jp-big-previous {
+	background: url("/img/jplayer.blue.monday.jpg") -82px -42px no-repeat;
+}
+
+a.jp-big-previous:hover {
+	background: url("/img/jplayer.blue.monday.jpg") -123px -42px no-repeat;
+}
+
+div.jp-interface {
+	background-color: #FFFFFF;
+}
